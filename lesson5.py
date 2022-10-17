@@ -2,14 +2,16 @@
 #  урл http://api.open-notify.org/astros.json
 # вивести список всіх астронавтів, що перебувають в даний момент на орбіті (дані не фейкові, оновлюються в
 # режимі реального часу)
+
 import requests
-#print('All these astronauts are in orbit right now: ')
-#url = 'http://api.open-notify.org/astros.json'
-#response = requests.get(url)
-#response_json = response.json()
-#in_orbit = response_json['people']
-#for astronauts in in_orbit:
-    #print(astronauts['name'])
+
+print('All these astronauts are in orbit right now: ')
+url = 'http://api.open-notify.org/astros.json'
+response = requests.get(url)
+response_json = response.json()
+in_orbit = response_json['people']
+for astronauts in in_orbit:
+    print(astronauts['name'])
 
 # завдання 2
 # апі погоди (всі токени я для вас вже прописав)
@@ -24,31 +26,12 @@ import requests
 # погода змінюється, як і місто. яке ви введете
 # роздрукувати тепрературу та швидкість вітру. з вказівкою міста, яке було вибране
 
-
-#app_id = '47503e85fabbabc93cff28c52398ae97'
-#url_weather = 'https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={app_id}&units=metric'
-#city_name = input('Please, enter the city: ')
-#response = requests.get(url_weather)
-#weather = response.json()
-#if weather['cod'] == 200:
-    #temperature = weather['main']['temp']
-
-    #wind = weather['wind']['speed']
-
-#print(f'{city_name}, {weather["main"]["temp"]}')
-
-#url = 'https://api.openweathermap.org/data/2.5/weather?q=Ivano-Frankivsk&appid=47503e85fabbabc93cff28c52398ae97&units=metric'
 city_name = input('Enter the name of city:')
 url = f'https://api.openweathermap.org/data/2.5/weather?q={city_name}' \
       f'&appid=47503e85fabbabc93cff28c52398ae97&units=metric'
-
 response = requests.get(url)
-response = response.json()
-
-if response['cod'] == 200:
-    temperature = response['main']['temp']
-
-    wind = response['wind']['speed']
-
-    print(f"The wind speed in {response['name']} is {wind} and temperature is {temperature}°C")
-
+response_json = response.json()
+if response_json['cod'] == 200:
+    temperature = response_json['main']['temp']
+    wind_speed = response_json['wind']['speed']
+    print(f"The temperature in {response_json['name']} is {temperature} °C and wind speed is {wind_speed} m/s.")
