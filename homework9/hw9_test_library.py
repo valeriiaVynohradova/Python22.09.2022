@@ -1,4 +1,4 @@
-import hw9_library
+from homework9 import hw9_library
 
 assert hw9_library.is_string_capitalized('My name is David') is False
 assert hw9_library.is_string_capitalized('I love playing') is True
